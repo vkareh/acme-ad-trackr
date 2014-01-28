@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>ACME Ad Trackr</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Twitter Bootstrap CSS -->
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.3/css/bootstrap.min.css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="container">
+        <h1>ACME Ad Trackr</h1>
+
+        <!-- Divide the page in two columns, the Bootstrap way -->
+        <div class="row">
+
+            <!-- This column has controls for Newspapers -->
+            <div id="newspapers" class="col-md-4">
+                <h3>Newspapers</h3>
+                <!-- Bootstrap's way of grouping a textfield with a button -->
+                <div class="input-group">
+                    <input type="text" id="newspaper-name" class="form-control" placeholder="Enter newspaper name...">
+                    <span class="input-group-btn">
+                        <button id="newspaper-add" class="btn btn-default" type="button">Add new</button>
+                    </span>
+                </div>
+                <br>
+                <em class="text-muted">1. Select any newspaper from this list <span class="glyphicon glyphicon-arrow-down"></span></em>
+                <!-- Initialize empty unordered list for newspapers -->
+                <ul id="newspaper-list" class="list-unstyled"></ul>
+            </div>
+
+            <!-- This column has controls for Ads -->
+            <div id="ads" class="col-md-4">
+                <h3>Ads</h3>
+                <!-- Bootstrap's way of grouping a textfield with a button -->
+                <div class="input-group">
+                    <input type="text" id="ad-text" class="form-control" placeholder="Enter ad text...">
+                    <span class="input-group-btn">
+                        <button id="ad-add" class="btn btn-default" type="button">Add new</button>
+                    </span>
+                </div>
+                <br>
+                <em class="text-muted">2. Then (un)select ads to track from this list <span class="glyphicon glyphicon-arrow-down"></span></em>
+                <!-- Initialize empty unordered list for ads -->
+                <ul id="ad-list" class="list-unstyled"></ul>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- jQuery -->
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <!-- Twitter Bootstrap -->
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.3/js/bootstrap.min.js"></script>
+    <!-- Underscore.js -->
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.2/underscore-min.js"></script>
+    <!-- Backbone.js -->
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/backbone.js/1.1.0/backbone-min.js"></script>
+    <!-- localStorage module for Backbone.js -->
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/backbone-localstorage.js/1.1.0/backbone.localStorage-min.js"></script>
+    <script src="main.js"></script>
+
+    <!-- Underscore template for newspaper list items -->
+    <script type="text/template" id="newspaper-item">
+        <li class="item">
+            <div class="radio">
+                <label><input type="radio" class="newspaper-radio" name="newspaper-radios" id="<%= model.id %>"> <span><%= model.get('name') %></span></label>
+            </div>
+        </li>
+    </script>
+
+    <!-- Underscore template for ad list items -->
+    <script type="text/template" id="ad-item">
+        <li class="item">
+            <div class="checkbox">
+                <label><input type="checkbox" class="ad-checkbox" id="<%= model.id %>"> <span><%= model.get('text').substr(0, 50) %></span></label>
+            </div>
+        </li>
+    </script>
+
+  </body>
+</html>
